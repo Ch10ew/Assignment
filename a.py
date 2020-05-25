@@ -1,13 +1,12 @@
-# [REDACTED]
-# [REDACTED]
+# CHEW CHI EN
+# TP055788
 #
 # COVID-19 Patient Management System
-# 
-# Stores all data in memory as program runs, so there might be memory issues at around 4GB of data
-
+#
 # Things I can add:
-# add help page
 # make search to have the list interface
+# make search be more like actual search (substring search)
+# add help page (don't do until approval)
 
 # Test data backup
 #1,-,Looz,ATO,A,012-3456789,looz@mail.com,None,O-,170,60,-,QDFR,QDFR,-,-
@@ -138,7 +137,18 @@ def Search( givenList, key = None, value = None, invalidInput = False, invalidTe
     foundList = []
     count = 0
     for n in range( len( givenList ) ):
-        if ( givenList[n][key].lower() == value ):
+        
+        # find
+        found = False
+        if ( value.isdigit() ):
+            if ( givenList[n][key].lower() == value ):
+                found = True
+        else: # .find() for lenient find, .startswith() for stricter find
+            if ( givenList[n][key].lower().find( value ) != -1 ):
+                found = True
+        
+        # if found
+        if ( found == True ):
             ClearConsole()
     
             if ( invalidInput ):
