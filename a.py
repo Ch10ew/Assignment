@@ -34,6 +34,13 @@ import os
 # Format: PID, CID, Name, Group, Zone, Contact No., Email, Medical History, Blood Group, Height, Weight, T1, T2, T3, Admission
 def ParseFile( filename, sep = ',' ):
     tempList = []
+    try:
+        with open( filename, 'r' ) as dataFile:
+            pass
+    except:
+        with open( filename, 'w' ) as dataFile:
+            pass
+        
     with open( filename, 'r' ) as dataFile:
         for line in dataFile:
             line = line.rstrip( '\n' ) # right strip any newline characters
@@ -1172,6 +1179,7 @@ def MainMenu( invalidInput = False, invalidText = "Invalid Input" ):
         
         # call ModifyDetails with empty list, then write the returned list to file
         tempList = ModifyDetails( [ currentPID, "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" ] )
+        
         if ( tempList ):
             WriteToFile( "Data.txt", ParseFile( "Data.txt" ) + [ tempList ] )
             if not( MainMenu( invalidInput = True, invalidText = "Record successfully modified" ) ):
