@@ -1,5 +1,4 @@
-# CHEW CHI EN
-# TP055788
+# Just a small warning to whoever is doing the same assignment. If you copy code and lecturers question, be ready to engage in a QnA ssession on code.
 #
 # COVID-19 Patient Management System
 #
