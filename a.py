@@ -4,9 +4,11 @@
 #
 # Things I can add:
 # make search to have the list interface
-# make search be more like actual search (substring search)
-# add help page (don't do until approval)
-
+# 
+# Known issues:
+# dies on Python Shell, because idk why it doesnt like to create/access file for me, even though the same code works on cmd and IDLE
+# 
+# 
 # Test data backup
 #1,-,Looz,ATO,A,012-3456789,looz@mail.com,None,O-,170,60,-,QDFR,QDFR,-,-
 #2,-,Chew,ATO,B,0123456788,chew@mail.com,None,A-,170,60,-,QDFR,-,-,-
@@ -139,7 +141,7 @@ def Search( givenList, key = None, value = None, invalidInput = False, invalidTe
             options = [ "QHNF", "QDFR", "HQFR", "HQNF", "CWFR" ]
         elif ( enteredInput == "t3" ):
             key = 14
-            options = [ "QHNF", "QDFR", "HQFR", "HQNF", "CWFR" ]
+            options = [ "QHNF", "RU", "HQNF", "CW" ]
         elif ( enteredInput == "admission" ):
             key = 15
             options = [ "Home", "NW", "ICU" ]
@@ -813,12 +815,10 @@ def ModifyTestResults( givenList, invalidInput = False, invalidText = "Invalid I
     elif ( enteredInput == "9" ):
         validTestResults = []
         sep = '/'
-        if ( givenList[3] == "ATO" or givenList[3] == "ACC" or givenList[3] == "AEO" ):
-            validTestResults = [ "QHNF", "QDFR" ]
-        elif ( givenList[3] == "SID" ):
-            validTestResults = [ "QHNF", "HQFR" ]
+        if ( givenList[3] == "ATO" or givenList[3] == "ACC" or givenList[3] == "AEO" or givenList[3] == "SID" ):
+            validTestResults = [ "QHNF", "RU" ]
         elif ( givenList[3] == "AHS" ):
-            validTestResults = [ "HQNF", "CWFR" ]
+            validTestResults = [ "HQNF", "CW" ]
         
         # if T1 not set
         if ( givenList[12] == "-" ):
