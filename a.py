@@ -56,7 +56,12 @@ def WriteToFile( filename, toWrite, sep = ',' ):
 # sep - character separating the args
 # end - should the print include trailing spaces
 def PrintCenter( *args, sep = ' ', endChar = '\n', trailingSpaces = True ):
-    width = os.get_terminal_size().columns
+    # because IDLE is not recognised as a terminal
+    try:
+        width = os.get_terminal_size().columns
+    except:
+        width = 120
+    
     if ( trailingSpaces ):
         print( "".join( [ ( str( item ) + sep ) for item in args ] ).rstrip( sep ).center( width - 1 ), end = endChar )
     else:
@@ -66,10 +71,18 @@ def PrintCenter( *args, sep = ' ', endChar = '\n', trailingSpaces = True ):
 # Clears console
 # No return value
 def ClearConsole():
-    if( os.name == "nt" ):
-        os.system( "cls" )
-    else:
-        os.system( "clear" )
+    try:
+        # the thing t otry for
+        os.get_terminal_size()
+
+        # normal code
+        if( os.name == "nt" ):
+            os.system( "cls" )
+        else:
+            os.system( "clear" )
+    except:
+        # do nothing
+        pass
 
 
 # takes a list of lists and searches for 
